@@ -4,15 +4,13 @@ Visit the [Developers Portal](https://dev-developers.nccsoft.vn/) to create your
 
 ## Add bot to your clan
 
-Use your install link in a browser to add your bot to your desired clan.
+Use [install link](https://mezon.ai/developers/bot/install/1963492276487327744) in a browser to add your bot to your desired clan.
 
 ## Installation
 
 ```bash
 $ yarn
 ```
-
-Copy `.env.example` to `.env` and replace it with your application token.
 
 ## Running the app
 
