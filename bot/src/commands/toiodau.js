@@ -1,12 +1,12 @@
-const topic1Services = require('../services/topic1Services');
+const topic2Services = require('../services/topic2Services');
 
-async function toilaai(client, event, name, birthday) {
-  await topic1Services.sendAllNumerologyResults(client, event, name, birthday, true);
+async function toiodau(client, event, birthday) {
+  await topic2Services.sendAdvancedNumerologyResults(client, event, birthday, true);
 }
 
 module.exports = {
-    name: 'toilaai',
-    description: 'Tôi là ai?',
+    name: 'toiodau',
+    description: 'Tôi ở đâu?',
     execute: async (client, event) => {
         const { channel_id, message_id, clan_id, sender_id } = event;
 
@@ -15,13 +15,13 @@ module.exports = {
 
         const parts = event.content.t.split(' ');
 
-        if (parts.length < 3) {
-            await messageFetch.reply({t: 'Hãy nhập đầy đủ tên và ngày sinh theo mẫu: `*toilaai [tên] [ngày sinh]`'} );
+        if (parts.length < 2) {
+            await messageFetch.reply({t: 'Hãy nhập đầy đủ tên và ngày sinh theo mẫu: `*toiodau [ngày sinh]`'} );
             return;
         }
 
-        const name = parts[1];
-        const birthday = parts[2];
+        // const name = parts[1];
+        const birthday = parts[1];
 
         const newEvent = {
             channel_id: event.channel_id,
@@ -30,6 +30,6 @@ module.exports = {
             message: event.content.t,
         };
         
-        await toilaai(client, newEvent, name, birthday);
+        await toiodau(client, newEvent, birthday);
     }
 };

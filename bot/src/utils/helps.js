@@ -8,7 +8,18 @@ async function updateMessage(client, event, payload) {
   try {
     const channel = await client.channels.fetch(event.channel_id);
     const message = await channel.messages.fetch(event.message_id);
+
     await message.update(payload);
+  } catch (error) {
+    console.error('Lỗi khi cập nhật tin nhắn:', error);
+  }
+}
+
+async function replyMessage(client, event, payload) {
+  try {
+    const channel = await client.channels.fetch(event.channel_id);
+    const message = await channel.messages.fetch(event.message_id);
+    await message.reply(payload);
   } catch (error) {
     console.error('Lỗi khi cập nhật tin nhắn:', error);
   }
@@ -43,4 +54,4 @@ function getRandomColor() {
   return colors[randomIndex] || '#F1C40F';
 }
 
-module.exports = { updateMessage, getRandomColor };
+module.exports = { updateMessage, getRandomColor, replyMessage };

@@ -2,7 +2,6 @@ const topic1Handler = require('./topic1Handler');
 const topic2Handler = require('./topic2Handler');
 const topic3Handler = require('./topic3Handler');
 
-
 const userData = {};
 
 const buttonHandlers = {

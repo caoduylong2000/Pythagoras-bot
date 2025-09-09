@@ -1,4 +1,4 @@
-const { updateMessage, getRandomColor } = require('../utils/helps');
+const { updateMessage, getRandomColor, replyMessage } = require('../utils/helps');
 const numerologyData = require('../data/numerologyData');
 
 // Các hàm tiện ích đã được cập nhật
@@ -93,7 +93,7 @@ async function getPersonalYearPayload(birthday) {
     return finalPayload;
 }
 
-async function sendAdvancedNumerologyResults(client, event, birthday) {
+async function sendAdvancedNumerologyResults(client, event, birthday, isNewMessage = false) {
   const payloads = await Promise.all([
     getPinnaclePyramidPayload(birthday),
     getPersonalYearPayload(birthday),
@@ -108,7 +108,11 @@ async function sendAdvancedNumerologyResults(client, event, birthday) {
     components: []
   };
 
-  await updateMessage(client, event, finalPayload);
+  if(!isNewMessage) {
+    await updateMessage(client, event, finalPayload);
+  } else {
+    await replyMessage(client, event, finalPayload);
+  }
 }
 
 module.exports = {

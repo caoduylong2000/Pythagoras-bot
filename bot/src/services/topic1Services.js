@@ -1,4 +1,4 @@
-const { updateMessage, getRandomColor } = require('../utils/helps');
+const { updateMessage, getRandomColor, replyMessage } = require('../utils/helps');
 const numerologyData = require('../data/numerologyData');
 
 const letterValues = {
@@ -161,7 +161,7 @@ async function handleAttitude(birthday) {
     return payloadFromData;
 }
 
-async function sendAllNumerologyResults(client, event, name, birthday) {
+async function sendAllNumerologyResults(client, event, name, birthday, isNewMessage = false) {
     const payloads = await Promise.all([
         handleLifePath(birthday),
         handleExpression(name),
@@ -179,7 +179,12 @@ async function sendAllNumerologyResults(client, event, name, birthday) {
         components: []
     };
     
-    await updateMessage(client, event, finalPayload);
+    if(!isNewMessage){
+      await updateMessage(client, event, finalPayload);
+    } else {
+      await replyMessage(client, event, finalPayload);
+    }
+
 }
 
 module.exports = {

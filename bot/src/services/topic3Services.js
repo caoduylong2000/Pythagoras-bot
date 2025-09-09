@@ -1,4 +1,4 @@
-const { updateMessage, getRandomColor } = require('../utils/helps');
+const { updateMessage, getRandomColor, replyMessage } = require('../utils/helps');
 const numerologyData = require('../data/numerologyData');
 
 function centerString(str, length) {
@@ -108,15 +108,18 @@ async function getBirthChartPayload(birthday) {
   return payload;
 }
 
-async function sendBirthChartResults(client, event, birthday) {
+async function sendBirthChartResults(client, event, birthday, isNewMessage = false) {
     const payload = await getBirthChartPayload(birthday);
     
     // payload.t = `Chào bạn, ${name}.\n\n` + payload.t;
 
-    await updateMessage(client, event, payload);
+    if(!isNewMessage) {
+      await updateMessage(client, event, payload);
+    } else {
+      await replyMessage(client, event, payload);
+    }
 }
 
 module.exports = {
-  getBirthChartPayload,
   sendBirthChartResults,
 };
