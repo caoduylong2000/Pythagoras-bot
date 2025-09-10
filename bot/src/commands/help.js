@@ -12,9 +12,9 @@ module.exports = {
     const helpMessage = 'Danh sách command: \n\n' + 
     '*help - Hiển thị danh sách command \n' +
     '*start - Bắt đầu sử dụng bot \n' + 
-    '*toilaai [tên] [năm-tháng-ngày] - Tìm hiểu thông tin "Bạn là ai" qua tên và ngày-tháng-năm sinh (Tên viêt liền không dấu).';
-    '*toiodau [năm-tháng-ngày] - Tìm hiểu thông tin "Bạn ở đâu?" qua ngày-tháng-năm sinh.';
-    '*toidacbiet [năm-tháng-ngày] - Tìm hiểu thông tin "Bạn có gì đặc biệt?" qua ngày-tháng-năm sinh.';
+    '*toilaai [tên] [năm-tháng-ngày] - Tìm hiểu thông tin "Bạn là ai" qua tên và ngày sinh (Tên viêt liền không dấu).\n' +
+    '*toiodau [năm-tháng-ngày] - Tìm hiểu thông tin "Bạn ở đâu?" qua ngày sinh.\n' +
+    '*toidacbiet [năm-tháng-ngày] - Tìm hiểu thông tin "Bạn có gì đặc biệt?" qua ngày sinh.';
 
     await messageFetch.reply({ 
         t: helpMessage,
