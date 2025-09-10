@@ -1,4 +1,4 @@
-const { updateMessage, getRandomColor, replyMessage } = require('../utils/helps');
+const { updateMessage, replyMessage } = require('../utils/helps');
 const numerologyData = require('../data/numerologyData');
 
 // Các hàm tiện ích đã được cập nhật
@@ -48,7 +48,6 @@ async function getPinnaclePyramidPayload(birthday) {
   const p2Data = numerologyData.pinnacle[pinnacle2] || { embed: [{ title: `Đỉnh 2: Con số ${pinnacle2}`, description: "Không có nội dung." }] };
   const p3Data = numerologyData.pinnacle[pinnacle3] || { embed: [{ title: `Đỉnh 3: Con số ${pinnacle3}`, description: "Không có nội dung." }] };
   const p4Data = numerologyData.pinnacle[pinnacle4] || { embed: [{ title: `Đỉnh 4: Con số ${pinnacle4}`, description: "Không có nội dung." }] };
-
 
   const payload = {
     t: `Biểu đồ Kim tự tháp (Pinnacle Cycles)\n\n` +

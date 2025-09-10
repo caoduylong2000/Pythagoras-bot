@@ -46,7 +46,14 @@ module.exports = {
         }
       ]
     };
+    const replyMsg = await messageFetch.reply(replyMessage);
 
-    await messageFetch.reply(replyMessage);
+    const sessionId = `${messageFetch.sender_id}_${clanId}`;
+    sessions.set(sessionId, {
+      senderId: event.sender_id,
+      channelId: event.channel_id,
+      messageId: replyMsg.message_id,
+      timestamp: Date.now()
+    });
   },
 };

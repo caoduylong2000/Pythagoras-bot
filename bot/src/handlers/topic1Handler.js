@@ -1,5 +1,6 @@
-const { updateMessage, getRandomColor } = require('../utils/helps');
-const topic1Services = require('../services/topic1Services');
+const { updateMessage, getRandomColor } = require(`../utils/helps`);
+const sessions = require(`../utils/session`);
+const topic1Services = require(`../services/topic1Services`);
 const { EMarkdownType, EMessageComponentType } = require("mezon-sdk");
 
 // Biến cục bộ để lưu dữ liệu người dùng tạm thời
@@ -12,9 +13,13 @@ async function topic1Question(client, event) {
   const messageid = message.id;
   const clanId = channel.clan.id;
 
-  const sessionId = `${event.sender_id}_${Date.now()}`;
-  // Lưu sessionID vào userData, mặc dù không dùng ở đây nhưng là một cách làm tốt
-  userData[messageid] = { sessionId };
+  const sessionId = `${event.user_id}_${clanId}`;
+  const sessionData = sessions.get(sessionId);
+
+  if (!sessionData || sessionData.senderId !== event.user_id || sessionData.messageId !== event.message_id) {
+    console.log("Không phải message cho bạn!")
+    return; //client.sendMessage(event.channel_id, "Bạn không có quyền tương tác với tin nhắn này.");
+  }
 
   const responseMessage = 'Bạn muốn biết: Bạn là ai?\n\n' + 
   'Hãy cùng tìm hiểu qua các con số sau nhé!::lac_dit::\n' + 
@@ -48,19 +53,19 @@ async function topic1Question(client, event) {
         title: `Nhập thông tin cá nhân.`,
         fields: [
           {
-            name: 'Nhập tên của bạn:',
+            name: `Nhập tên của bạn:`,
             inputs: {
               id: `${clanId}_${messageid}_input-name-field`,
               type: EMessageComponentType.INPUT,
               component: {
                 id: `input-${messageid}-name-plhder`,
-                placeholder: 'Ex. Write something',
+                placeholder: `Ex. Write something`,
                 required: true,
               },
             },
           },
           {
-            name: 'Chọn ngày sinh của bạn:',
+            name: `Chọn ngày sinh của bạn:`,
             inputs: {
               id: `${clanId}_${messageid}_daily-block-ip`,
               type: EMessageComponentType.DATEPICKER,
@@ -76,14 +81,14 @@ async function topic1Question(client, event) {
       {
         components: [
           {
-            id: `${clanId}_${messageid}_topic1-submit-button`,
+            id: `${sessionId}_topic1-submit-button`,
             type: EMessageComponentType.BUTTON,
-            component: { label: "Bắt đầu!", style: 3, custom_id: `topic1-submit-button:${sessionId}` }
+            component: { label: "Bắt đầu!", style: 3}
           },
           {
-            id: `${clanId}_${messageid}_topic1-cancel-button`,
+            id: `${sessionId}_topic1-cancel-button`,
             type: EMessageComponentType.BUTTON,
-            component: { label: "Huỷ bỏ", style: 2, custom_id: `topic1-cancel-button:${sessionId}` }
+            component: { label: "Huỷ bỏ", style: 2}
           }
         ]
       }
@@ -99,10 +104,18 @@ async function topic1Submit(client, event) {
     const messageid = message.id;
     const clanId = channel.clan.id;
 
+    const sessionId = `${event.user_id}_${clanId}`;
+    const sessionData = sessions.get(sessionId);
+
+  if (!sessionData || sessionData.senderId !== event.user_id || sessionData.messageId !== event.message_id) {
+    console.log("Không phải message cho bạn!")
+    return; //client.sendMessage(event.channel_id, "Bạn không có quyền tương tác với tin nhắn này.");
+  }
+
     const extraDataString = event.extra_data.trim();
 
     if(!extraDataString){
-        await message.reply({ t: 'Hãy nhập đủ các thông tin để tiếp tục!'});
+        await message.reply({ t: `Hãy nhập đủ các thông tin để tiếp tục!`});
     }
     else {
         const rawData = `${extraDataString}`;
@@ -113,12 +126,27 @@ async function topic1Submit(client, event) {
         await topic1Services.sendAllNumerologyResults(client, event, name, birthday);
     }
 
-    delete userData[messageid];
+    delete userData[event.message_id];
+    sessions.delete(sessionId)
 }
 
 async function topic1Cancel(client, event) {
+  const channel = await client.channels.fetch(event.channel_id);
+  const message = await channel.messages.fetch(event.message_id);
+
+  const clanId = channel.clan.id;
+
+  const sessionId = `${event.user_id}_${clanId}`;
+  const sessionData = sessions.get(sessionId);
+
+  if (!sessionData || sessionData.senderId !== event.user_id || sessionData.messageId !== event.message_id) {
+    console.log("Không phải message cho bạn!")
+    return; //client.sendMessage(event.channel_id, "Bạn không có quyền tương tác với tin nhắn này.");
+  }
+
   delete userData[event.message_id];
-  const responseMessage = 'Hẹn gặp bạn lần sau!';
+  sessions.delete(sessionId)
+  const responseMessage = `Hẹn gặp bạn lần sau!`;
   await updateMessage(client, event, { t: responseMessage, components: [] });
 }
 

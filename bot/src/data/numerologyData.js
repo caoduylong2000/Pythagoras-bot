@@ -500,7 +500,7 @@ module.exports = {
   },
   pinnacle: {
     1: {
-      // t: `Bạn là người tiên phong, lãnh đạo bẩm sinh. Bạn độc lập, tự chủ và có khả năng dẫn dắt người khác.`,
+      t: ``,
       embed: [{
         color: getRandomColor(),
         title: `Con số đỉnh kim tự tháp : 1`,
@@ -509,7 +509,7 @@ module.exports = {
       components: [],
     },
     2: {
-      // t: `Bạn là người tiên phong, lãnh đạo bẩm sinh. Bạn độc lập, tự chủ và có khả năng dẫn dắt người khác.`,
+      t: ``,
       embed: [{
         color: getRandomColor(),
         title: `Con số đỉnh kim tự tháp : 2`,
@@ -518,7 +518,7 @@ module.exports = {
       components: [],
     },
     3: {
-      // t: `Bạn là người tiên phong, lãnh đạo bẩm sinh. Bạn độc lập, tự chủ và có khả năng dẫn dắt người khác.`,
+      t: ``,
       embed: [{
         color: getRandomColor(),
         title: `Con số đỉnh kim tự tháp : 3`,
@@ -527,7 +527,7 @@ module.exports = {
       components: [],
     },
     4: {
-      // t: `Bạn là người tiên phong, lãnh đạo bẩm sinh. Bạn độc lập, tự chủ và có khả năng dẫn dắt người khác.`,
+      t: ``,
       embed: [{
         color: getRandomColor(),
         title: `Con số đỉnh kim tự tháp : 4`,
@@ -536,7 +536,7 @@ module.exports = {
       components: [],
     },
     5: {
-      // t: `Bạn là người tiên phong, lãnh đạo bẩm sinh. Bạn độc lập, tự chủ và có khả năng dẫn dắt người khác.`,
+      t: ``,
       embed: [{
         color: getRandomColor(),
         title: `Con số đỉnh kim tự tháp : 5`,
@@ -545,7 +545,7 @@ module.exports = {
       components: [],
     },
     6: {
-      // t: `Bạn là người tiên phong, lãnh đạo bẩm sinh. Bạn độc lập, tự chủ và có khả năng dẫn dắt người khác.`,
+      t: ``,
       embed: [{
         color: getRandomColor(),
         title: `Con số đỉnh kim tự tháp : 6`,
@@ -554,7 +554,7 @@ module.exports = {
       components: [],
     },
     7: {
-      // t: `Bạn là người tiên phong, lãnh đạo bẩm sinh. Bạn độc lập, tự chủ và có khả năng dẫn dắt người khác.`,
+      t: ``,
       embed: [{
         color: getRandomColor(),
         title: `Con số đỉnh kim tự tháp : 7`,
@@ -563,7 +563,7 @@ module.exports = {
       components: [],
     },
     8: {
-      // t: `Bạn là người tiên phong, lãnh đạo bẩm sinh. Bạn độc lập, tự chủ và có khả năng dẫn dắt người khác.`,
+      t: ``,
       embed: [{
         color: getRandomColor(),
         title: `Con số đỉnh kim tự tháp : 8`,
@@ -572,7 +572,7 @@ module.exports = {
       components: [],
     },
     9: {
-      // t: `Bạn là người tiên phong, lãnh đạo bẩm sinh. Bạn độc lập, tự chủ và có khả năng dẫn dắt người khác.`,
+      t: ``,
       embed: [{
         color: getRandomColor(),
         title: `Con số đỉnh kim tự tháp : 9`,
@@ -581,7 +581,7 @@ module.exports = {
       components: [],
     },
     11: {
-      // t: `Bạn là người tiên phong, lãnh đạo bẩm sinh. Bạn độc lập, tự chủ và có khả năng dẫn dắt người khác.`,
+      t: ``,
       embed: [{
         color: getRandomColor(),
         title: `Con số đỉnh kim tự tháp : 11`,
@@ -590,7 +590,7 @@ module.exports = {
       components: [],
     },
     22: {
-      // t: `Bạn là người tiên phong, lãnh đạo bẩm sinh. Bạn độc lập, tự chủ và có khả năng dẫn dắt người khác.`,
+      t: ``,
       embed: [{
         color: getRandomColor(),
         title: `Con số đỉnh kim tự tháp : 22`,

@@ -19,13 +19,12 @@ const buttonHandlers = {
 };
 
 module.exports = (client) => {
-  return async (event) => {
-
+  return async (event) => {    
     if (event.button_id) {
       const { button_id } = event;
       const idParts = button_id.split('_');
       const actionId = idParts[idParts.length - 1];
-      
+
       const handler = buttonHandlers[actionId];
       if (handler) {
         try {

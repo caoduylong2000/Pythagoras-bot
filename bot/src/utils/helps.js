@@ -1,3 +1,5 @@
+const sessions = require("../utils/session");
+
 /**
  * Cập nhật tin nhắn với nội dung và component tùy chỉnh.
  * @param {object} client - Đối tượng client của bot.
